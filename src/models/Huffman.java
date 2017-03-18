@@ -1,5 +1,8 @@
 package models;
 
+import com.google.common.collect.MinMaxPriorityQueue;
+import edu.princeton.cs.introcs.BinaryStdOut;
+
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
@@ -31,6 +34,38 @@ public class Huffman{
 
     public Huffman(){
     }
+
+    private static final int AscII = 256;
+
+    public static void encode(){
+
+    }
+
+    public static Node buildTree(int[] frequencies){
+        PriorityQueue<Node> pq = new PriorityQueue<Node>();
+        for(char i = 0; i<AscII; i++){
+            pq.add(new Node(i, frequencies[i], null, null));
+        }
+        while(pq.size() > 1){
+            Node left = pq.poll();
+            Node right = pq.poll();
+            Node parent = new Node('\0', left.freq + right.freq, left, right);
+            pq.add(parent);
+        }
+        return pq.poll();
+    }
+
+    private static void writeTree(Node n){
+        if(n.isLeaf()){
+            BinaryStdOut.write(true);
+            BinaryStdOut.write(n.ch, 8);
+        }
+        BinaryStdOut.write(false);
+        writeTree(n.left);
+        writeTree(n.right);
+    }
+
+
 
     public static HashMap<Character, Integer> frequencies(String s){
         HashMap<Character, Integer> freq = new HashMap<Character, Integer>();
