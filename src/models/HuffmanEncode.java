@@ -1,18 +1,12 @@
 package models;
 
-import edu.princeton.cs.introcs.BinaryStdIn;
-import edu.princeton.cs.introcs.BinaryStdOut;
-
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
 /**
- * Created by ciaranroche on 18/03/2017.
+ * Created by ciaranroche on 22/03/2017.
  */
-public class Huffman{
-
-    private static final int AscII = 256;
-
+public class HuffmanEncode {
     public static class Node implements Comparable<Node> {
         private char ch;
         private int freq;
@@ -35,54 +29,9 @@ public class Huffman{
         }
     }
 
-    public Huffman(){
+    public HuffmanEncode(){
     }
 
-
-    public static void encode(String s){
-        s = BinaryStdIn.readString();
-        char[] input = s.toCharArray();
-
-        int[] frequencies = new int[AscII];
-        for(int i = 0; i < input.length; i++){
-            frequencies[input[i]]++;
-        }
-    }
-
-    public static Node buildTree(int[] frequencies){
-        PriorityQueue<Node> pq = new PriorityQueue<Node>();
-        for(char i = 0; i<AscII; i++){
-            pq.add(new Node(i, frequencies[i], null, null));
-        }
-        while(pq.size() > 1){
-            Node left = pq.poll();
-            Node right = pq.poll();
-            Node parent = new Node('\0', left.freq + right.freq, left, right);
-            pq.add(parent);
-        }
-        return pq.poll();
-    }
-
-    private static void writeTree(Node n){
-        if(n.isLeaf()){
-            BinaryStdOut.write(true);
-            BinaryStdOut.write(n.ch, 8);
-        }
-        BinaryStdOut.write(false);
-        writeTree(n.left);
-        writeTree(n.right);
-    }
-
-    private static void lookupTable(String[] st, Node x, String s){
-        if(!x.isLeaf()){
-            lookupTable(st, x.left, s + '0');
-            lookupTable(st, x.right, s + '1');
-        }else{
-            st[x.ch] = s;
-        }
-    }
-
-    
     public static HashMap<Character, Integer> frequencies(String s){
         HashMap<Character, Integer> freq = new HashMap<Character, Integer>();
         for(int i=0; i<s.length(); i++){
@@ -123,9 +72,30 @@ public class Huffman{
 
     public static HashMap<Character, String> encodied(Node root) {
         HashMap<Character, String> encoding = new HashMap<>();
-        depthFirst(root, "", encoding);
+        depthFirst( root, "", encoding );
         return encoding;
     }
 
+    public static void main(String[] args){
+        String s = "mississippi river";
+
+        HashMap<Character, Integer> frequencies = frequencies(s);
+        Node root = huffmanTree(frequencies);
+
+        HashMap<Character, String> encoding = encodied(root);
+        System.out.println("<<<<------------------------------------------------->>>>");
+        System.out.println("The value to each key after encoding is:\n" + encoding);
+        System.out.println("<<<<------------------------------------------------->>>>");
+
+        String huff = "";
+        for(int i=0; i<s.length(); i++){
+            char ch = s.charAt(i);
+            if(encoding.containsKey(ch)){
+                huff = huff + encoding.get(ch);
+            }
+        }
+        System.out.println("\nThe huffman encoded string of bits:\n" + huff);
+        System.out.println("<<<<------------------------------------------------->>>>");
+    }
 
 }
