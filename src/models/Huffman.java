@@ -47,6 +47,8 @@ public class Huffman {
 
         serializeTree(root);
 
+        serializeString(encodedString);
+
     }
 
     public static HashMap<Character, Integer> frequencies(String s){
@@ -81,7 +83,6 @@ public class Huffman {
         return map;
     }
 
-
     private static void doGenerateCode(Node node, Map<Character, String> map, String s) {
         if (node.left == null && node.right == null) {
             map.put(node.ch, s);
@@ -93,23 +94,21 @@ public class Huffman {
 
     private static String encodeMessage(Map<Character, String> charCode, String sentence) {
         final StringBuilder stringBuilder = new StringBuilder();
-
         for (int i = 0; i < sentence.length(); i++) {
             stringBuilder.append(charCode.get(sentence.charAt(i)));
         }
-
         System.out.println(stringBuilder.toString());
         return stringBuilder.toString();
     }
 
-    private static void serializeTree(Node node) throws FileNotFoundException, IOException {
+    private static void serializeTree(Node node) throws IOException {
         final BitSet bitSet = new BitSet();
-        try (ObjectOutputStream oosTree = new ObjectOutputStream(new FileOutputStream("././data/tree"))) {
-            try (ObjectOutputStream oosChar = new ObjectOutputStream(new FileOutputStream("././data/char"))) {
+        try (ObjectOutputStream streamTree = new ObjectOutputStream(new FileOutputStream("././data/tree"))) {
+            try (ObjectOutputStream streamChar = new ObjectOutputStream(new FileOutputStream("././data/char"))) {
                 IntObject o = new IntObject();
-                preOrder(node, oosChar, bitSet, o);
+                preOrder(node, streamChar, bitSet, o);
                 bitSet.set(o.bitPosition, true);
-                oosTree.writeObject(bitSet);
+                streamTree.writeObject(bitSet);
             }
         }
     }
@@ -118,17 +117,39 @@ public class Huffman {
         int bitPosition;
     }
 
-    private static void preOrder(Node node, ObjectOutputStream oosChar, BitSet bitSet, IntObject intObject) throws IOException {
+    private static void preOrder(Node node, ObjectOutputStream streamChar, BitSet bitSet, IntObject intObject) throws IOException {
         if (node.left == null && node.right == null) {
             bitSet.set(intObject.bitPosition++, false);
-            oosChar.writeChar(node.ch);
+            streamChar.writeChar(node.ch);
             return;
         }
         bitSet.set(intObject.bitPosition++, true);
-        preOrder(node.left, oosChar, bitSet, intObject);
+        preOrder(node.left, streamChar, bitSet, intObject);
 
         bitSet.set(intObject.bitPosition++, true);
-        preOrder(node.right, oosChar, bitSet, intObject);
+        preOrder(node.right, streamChar, bitSet, intObject);
+    }
+
+    private static BitSet getBitSet(String message) {
+        final BitSet bitSet = new BitSet();
+        int i = 0;
+        for (i = 0; i < message.length(); i++) {
+            if (message.charAt(i) == '0') {
+                bitSet.set(i, false);
+            } else {
+                bitSet.set(i, true);
+            }
+        }
+        bitSet.set(i, true);
+        return bitSet;
+    }
+
+    private static void serializeString(String message) throws IOException {
+        final BitSet bitSet = getBitSet(message);
+        System.out.println(bitSet);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("././data/encodedMessage"))){
+            oos.writeObject(bitSet);
+        }
     }
 
 }
