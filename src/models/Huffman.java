@@ -1,9 +1,6 @@
 package models;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -35,8 +32,10 @@ public class Huffman {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         String s = "mississippi river";
+
+        System.out.println(s);
 
         HashMap<Character, Integer> frequencies = frequencies(s);
         Node root = huffmanTree(frequencies);
@@ -48,6 +47,10 @@ public class Huffman {
         serializeTree(root);
 
         serializeString(encodedString);
+
+        Node dRoot = deserializeTree();
+
+        decoder(dRoot);
 
     }
 
@@ -149,6 +152,54 @@ public class Huffman {
         System.out.println(bitSet);
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("././data/encodedMessage"))){
             oos.writeObject(bitSet);
+        }
+    }
+
+
+
+    public static Node deserializeTree() throws IOException, ClassNotFoundException {
+        try(ObjectInputStream streamBranch = new ObjectInputStream(new FileInputStream("././data/tree"))){
+            try(ObjectInputStream streamChar = new ObjectInputStream(new FileInputStream("././data/char"))){
+                BitSet bitSet = (BitSet) streamBranch.readObject();
+                return preOrder(bitSet, streamChar, new IntObject());
+            }
+        }
+    }
+
+    public static Node preOrder(BitSet bitSet, ObjectInputStream streamChar, IntObject intObject) throws IOException {
+        Node node = new Node('\0',0,null,null);
+        if(!bitSet.get(intObject.bitPosition)){
+            intObject.bitPosition++;
+            node.ch = streamChar.readChar();
+            return node;
+        }
+        intObject.bitPosition = intObject.bitPosition + 1;
+        node.left = preOrder(bitSet, streamChar, intObject);
+
+        intObject.bitPosition = intObject.bitPosition + 1;
+        node.right = preOrder(bitSet, streamChar, intObject);
+
+        return node;
+    }
+
+    public static String decoder(Node n) throws IOException, ClassNotFoundException {
+        try(ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("././data/encodedMessage"))){
+            BitSet bitSet = (BitSet) inputStream.readObject();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i<(bitSet.length()-1);){
+                Node temp = n;
+                while(temp.left!=null){
+                    if(!bitSet.get(i)){
+                        temp = temp.left;
+                    }else{
+                        temp = temp.right;
+                    }
+                    i = i + 1;
+                }
+                sb.append(temp.ch);
+            }
+            System.out.println(sb.toString());
+            return sb.toString();
         }
     }
 
