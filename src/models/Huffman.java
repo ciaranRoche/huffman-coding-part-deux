@@ -33,29 +33,29 @@ public class Huffman {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        String s = "mississippi river";
-
-        System.out.println(s);
-
-        HashMap<Character, Integer> frequencies = frequencies(s);
-        Node root = huffmanTree(frequencies);
-
-        HashMap<Character, String> encoding = generateCodes(frequencies.keySet(), root);
-
-        String encodedString = encodeMessage(encoding, s);
-
-        serializeTree(root);
-
-        serializeString(encodedString);
-
-        Node dRoot = deserializeTree();
-
-        decoder(dRoot);
+//        String s = "go go goofers, rowing down the mississippi river in a steam boat";
+//
+//        System.out.println("the original string lenght is : " + (s.length()*8));
+//
+//        HashMap<Character, Integer> frequencies = frequencies(s);
+//        Node root = huffmanTree(frequencies);
+//
+//        HashMap<Character, String> encoding = generateCodes(frequencies.keySet(), root);
+//
+//        String encodedString = encodeMessage(encoding, s);
+//
+//        serializeTree(root);
+//
+//        serializeString(encodedString);
+//
+//        Node dRoot = deserializeTree();
+//
+//        decoder(dRoot);
 
     }
 
     public static HashMap<Character, Integer> frequencies(String s){
-        HashMap<Character, Integer> freq = new HashMap<Character, Integer>();
+        HashMap<Character, Integer> freq = new HashMap<>();
         for(int i=0; i<s.length(); i++){
             char ch = s.charAt(i);
             if(freq.containsKey(ch)){
@@ -80,13 +80,13 @@ public class Huffman {
         return priority.poll();
     }
 
-    private static HashMap<Character, String> generateCodes(Set<Character> chars, Node node) {
-        final HashMap<Character, String> map = new HashMap<Character, String>();
+    public static HashMap<Character, String> generateCodes(Set<Character> chars, Node node) {
+        final HashMap<Character, String> map = new HashMap<>();
         doGenerateCode(node, map, "");
         return map;
     }
 
-    private static void doGenerateCode(Node node, Map<Character, String> map, String s) {
+    public static void doGenerateCode(Node node, Map<Character, String> map, String s) {
         if (node.left == null && node.right == null) {
             map.put(node.ch, s);
             return;
@@ -95,19 +95,20 @@ public class Huffman {
         doGenerateCode(node.right, map, s + '1' );
     }
 
-    private static String encodeMessage(Map<Character, String> charCode, String sentence) {
+    public static String encodeMessage(Map<Character, String> charCode, String sentence) {
         final StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < sentence.length(); i++) {
             stringBuilder.append(charCode.get(sentence.charAt(i)));
         }
-        System.out.println(stringBuilder.toString());
+
+        System.out.println("The encoded string of bits looks like:\n" + stringBuilder.toString());
         return stringBuilder.toString();
     }
 
-    private static void serializeTree(Node node) throws IOException {
+    public static void serializeTree(Node node, String location) throws IOException {
         final BitSet bitSet = new BitSet();
-        try (ObjectOutputStream streamTree = new ObjectOutputStream(new FileOutputStream("././data/tree"))) {
-            try (ObjectOutputStream streamChar = new ObjectOutputStream(new FileOutputStream("././data/char"))) {
+        try (ObjectOutputStream streamTree = new ObjectOutputStream(new FileOutputStream(location +"-tree"))) {
+            try (ObjectOutputStream streamChar = new ObjectOutputStream(new FileOutputStream(location+"-char"))) {
                 IntObject o = new IntObject();
                 preOrder(node, streamChar, bitSet, o);
                 bitSet.set(o.bitPosition, true);
@@ -116,11 +117,11 @@ public class Huffman {
         }
     }
 
-    private static class IntObject {
+    public static class IntObject {
         int bitPosition;
     }
 
-    private static void preOrder(Node node, ObjectOutputStream streamChar, BitSet bitSet, IntObject intObject) throws IOException {
+    public static void preOrder(Node node, ObjectOutputStream streamChar, BitSet bitSet, IntObject intObject) throws IOException {
         if (node.left == null && node.right == null) {
             bitSet.set(intObject.bitPosition++, false);
             streamChar.writeChar(node.ch);
@@ -133,7 +134,7 @@ public class Huffman {
         preOrder(node.right, streamChar, bitSet, intObject);
     }
 
-    private static BitSet getBitSet(String message) {
+    public static BitSet getBitSet(String message) {
         final BitSet bitSet = new BitSet();
         int i = 0;
         for (i = 0; i < message.length(); i++) {
@@ -147,10 +148,11 @@ public class Huffman {
         return bitSet;
     }
 
-    private static void serializeString(String message) throws IOException {
+    public static void serializeString(String message, String location) throws IOException {
         final BitSet bitSet = getBitSet(message);
-        System.out.println(bitSet);
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("././data/encodedMessage"))){
+        System.out.println("Size when converted to bits : " + (bitSet.length()-1));
+        System.out.println("Size when converted to bytes: " + (Math.ceil((bitSet.length()-1)/8)));
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(location+"-encoded"))){
             oos.writeObject(bitSet);
         }
     }

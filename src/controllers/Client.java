@@ -1,5 +1,6 @@
 package controllers;
 
+import asg.cliche.Command;
 import asg.cliche.ShellFactory;
 import models.Data;
 import models.Huffman;
@@ -22,11 +23,39 @@ public class Client {
     public static void main(String[] args) throws IOException {
         Client client = new Client();
         scanner = new Scanner(System.in);
+        System.out.println("   \\\\  //  wWw  wWw             \\\\\\    ///       \\\\\\  ///\n" +
+                "   (o)(o)  (O)  (O)   wWw   wWw ((O)  (O))   /)  ((O)(O)) \n" +
+                "   ||  ||  / )  ( \\   (O)_  (O)_ | \\  / |  (o)(O) | \\ ||  \n" +
+                "   |(__)| / /    \\ \\ .' __).' __)||\\\\//||   //\\\\  ||\\\\||  \n" +
+                "   /.--.\\ | \\____/ |(  _) (  _)  || \\/ ||  |(__)| || \\ |  \n" +
+                "  -'    `-'. `--' .` )/    )/    ||    ||  /,-. | ||  ||  \n" +
+                "            `-..-'  (     (     (_/    \\_)-'   ''(_/  \\_) ");
         Shell shell = ShellFactory.createConsoleShell("Huff",
                 "<<<<------------------------------------------------->>>>\n             " +
                         "Welcome to the Huffman Generator\n<<<<------------------------------------------------->>>>" +
                            "\n- ?help for instructions\n- ?list for commands",client);
         shell.commandLoop();
+    }
+
+    @Command(description = "Load External File")
+    public void load() throws Exception{
+        System.out.println("Please enter where to save the file: ");
+        String save = scanner.nextLine();
+
+        System.out.println("Please give path to file to be encoded: ");
+        String file = scanner.nextLine();
+        String data = huffAPI.prime(file);
+
+    }
+
+    @Command(description = "Encode a String of text to a File")
+    public void encodeString() throws IOException {
+        System.out.println("Please enter where to save the file: ");
+        String save = scanner.nextLine();
+
+        System.out.println("Please String of text to be encoded: ");
+        String file = scanner.nextLine();
+        huffAPI.encodeSave(file, save);
 
     }
 }
