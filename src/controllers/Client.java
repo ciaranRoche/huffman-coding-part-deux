@@ -58,4 +58,11 @@ public class Client {
         huffAPI.encodeSave(file, save);
 
     }
+
+    @Command(description = "Select a file to be decoded")
+    public void decodeFile() throws IOException, ClassNotFoundException {
+        System.out.println("Please enter location of file: ");
+        String file = scanner.nextLine();
+        huffAPI.decodeFile(file);
+    }
 }

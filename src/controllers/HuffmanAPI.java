@@ -50,4 +50,10 @@ public class HuffmanAPI {
         huff.decoder(decodeRoot, file);
 
     }
+
+    public static void decodeFile(String file) throws IOException, ClassNotFoundException {
+        Huffman.Node root = huff.deserializeTree(file);
+
+        huff.decoder(root, file);
+    }
 }

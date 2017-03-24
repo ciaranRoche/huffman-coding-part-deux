@@ -201,9 +201,18 @@ public class Huffman {
                 }
                 sb.append(temp.ch);
             }
-            System.out.println(sb.toString());
+            System.out.println("The decoded file at: " +location+ " is:\n" +sb.toString());
+            saveDecode(sb.toString(), location);
             return sb.toString();
         }
+    }
+
+    public static void saveDecode(String s, String location) throws FileNotFoundException {
+
+        final OutputStream os = new FileOutputStream(location+"-decoded");
+        final PrintStream ps = new PrintStream(os);
+        ps.print(s);
+        ps.close();
     }
 
 }
