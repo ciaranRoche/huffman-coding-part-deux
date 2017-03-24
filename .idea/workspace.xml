@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f09e1e9-05c0-4d23-bfb3-8435c6e28e3a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/debug-char" afterPath="$PROJECT_DIR$/data/debug-char" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/debug-encoded" afterPath="$PROJECT_DIR$/data/debug-encoded" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/debug-tree" afterPath="$PROJECT_DIR$/data/debug-tree" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/huffman-coding-part-duex/controllers/Client.class" afterPath="$PROJECT_DIR$/out/production/huffman-coding-part-duex/controllers/Client.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/huffman-coding-part-duex/controllers/HuffmanAPI.class" afterPath="$PROJECT_DIR$/out/production/huffman-coding-part-duex/controllers/HuffmanAPI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/huffman-coding-part-duex/models/Huffman.class" afterPath="$PROJECT_DIR$/out/production/huffman-coding-part-duex/models/Huffman.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/debug-decoded" afterPath="$PROJECT_DIR$/data/debug-decoded" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/Client.java" afterPath="$PROJECT_DIR$/src/controllers/Client.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/HuffmanAPI.java" afterPath="$PROJECT_DIR$/src/controllers/HuffmanAPI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/Huffman.java" afterPath="$PROJECT_DIR$/src/models/Huffman.java" />
@@ -28,21 +30,11 @@
       <file leaf-file-name="Huffman.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/models/Huffman.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="204" column="47" lean-forward="false" selection-start-line="204" selection-start-column="47" selection-end-line="204" selection-end-column="47" />
+            <state relative-caret-position="450">
+              <caret line="32" column="5" lean-forward="false" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="debug-decoded" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/data/debug-decoded">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -50,8 +42,8 @@
       <file leaf-file-name="HuffmanAPI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controllers/HuffmanAPI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="54" column="36" lean-forward="true" selection-start-line="54" selection-start-column="36" selection-end-line="54" selection-end-column="36" />
+            <state relative-caret-position="360">
+              <caret line="55" column="39" lean-forward="false" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -59,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controllers/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="65" column="32" lean-forward="false" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
+            <state relative-caret-position="240">
+              <caret line="54" column="39" lean-forward="false" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,8 +90,10 @@
         <option value="$PROJECT_DIR$/src/models/HuffmanBits.java" />
         <option value="$PROJECT_DIR$/libs/asg.cliche.jar!/asg/cliche/ShellCommand.class" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/controllers/HuffmanAPI.java" />
+        <option value="$PROJECT_DIR$/data/debug" />
+        <option value="$PROJECT_DIR$/data/debug-decoded" />
         <option value="$PROJECT_DIR$/src/controllers/Client.java" />
+        <option value="$PROJECT_DIR$/src/controllers/HuffmanAPI.java" />
         <option value="$PROJECT_DIR$/src/models/Huffman.java" />
       </list>
     </option>
@@ -643,6 +637,13 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
     <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
       <config-file value="" />
       <node-interpreter value="project" />
@@ -774,16 +775,15 @@
       <workItem from="1490131775403" duration="684000" />
       <workItem from="1490177029654" duration="17683000" />
       <workItem from="1490290975695" duration="368000" />
-      <workItem from="1490302107162" duration="1887000" />
+      <workItem from="1490302107162" duration="3348000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33245000" />
+    <option name="totallyTimeSpent" value="34706000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -795,7 +795,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2743259" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2743259" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -827,13 +827,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/models/Huffman.java</url>
-          <line>152</line>
+          <line>130</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/models/Huffman.java</url>
-          <line>203</line>
+          <line>181</line>
           <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
@@ -1039,10 +1039,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/Client.java">
+    <entry file="file://$PROJECT_DIR$/src/models/Huffman.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="65" column="32" lean-forward="false" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
+        <state relative-caret-position="450">
+          <caret line="32" column="5" lean-forward="false" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1051,21 +1051,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/HuffmanAPI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" column="36" lean-forward="true" selection-start-line="54" selection-start-column="36" selection-end-line="54" selection-end-column="36" />
+        <state relative-caret-position="360">
+          <caret line="55" column="39" lean-forward="false" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/Huffman.java">
+    <entry file="file://$PROJECT_DIR$/data/debug">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="204" column="47" lean-forward="false" selection-start-line="204" selection-start-column="47" selection-end-line="204" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="504">
+          <caret line="43" column="22" lean-forward="false" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1074,6 +1072,16 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="54" column="39" lean-forward="false" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

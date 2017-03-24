@@ -38,25 +38,21 @@ public class Client {
     }
 
     @Command(description = "Load External File")
-    public void load() throws Exception{
+    public void encodeFile() throws Exception{
         System.out.println("Please enter where to save the file: ");
         String save = scanner.nextLine();
-
         System.out.println("Please give path to file to be encoded: ");
         String file = scanner.nextLine();
-        String data = huffAPI.prime(file);
-
+        huffAPI.encodeFile(file, save);
     }
 
     @Command(description = "Encode a String of text to a File")
     public void encodeString() throws IOException, ClassNotFoundException {
         System.out.println("Please enter where to save the file: ");
         String save = scanner.nextLine();
-
         System.out.println("Please String of text to be encoded: ");
         String file = scanner.nextLine();
         huffAPI.encodeSave(file, save);
-
     }
 
     @Command(description = "Select a file to be decoded")
@@ -64,5 +60,11 @@ public class Client {
         System.out.println("Please enter location of file: ");
         String file = scanner.nextLine();
         huffAPI.decodeFile(file);
+    }
+
+    @Command(description = "Exit Program")
+    public void quit(){
+        System.out.println("If you leave me now . . . . ");
+        System.exit(0);
     }
 }

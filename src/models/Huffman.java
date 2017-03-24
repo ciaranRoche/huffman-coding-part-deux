@@ -32,28 +32,6 @@ public class Huffman {
         }
     }
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-//        String s = "go go goofers, rowing down the mississippi river in a steam boat";
-//
-//        System.out.println("the original string lenght is : " + (s.length()*8));
-//
-//        HashMap<Character, Integer> frequencies = frequencies(s);
-//        Node root = huffmanTree(frequencies);
-//
-//        HashMap<Character, String> encoding = generateCodes(frequencies.keySet(), root);
-//
-//        String encodedString = encodeMessage(encoding, s);
-//
-//        serializeTree(root);
-//
-//        serializeString(encodedString);
-//
-//        Node dRoot = deserializeTree();
-//
-//        decoder(dRoot);
-
-    }
-
     public static HashMap<Character, Integer> frequencies(String s){
         System.out.println("The starting size of file is: " +(s.length()*8)+ " bits");
         HashMap<Character, Integer> freq = new HashMap<>();
