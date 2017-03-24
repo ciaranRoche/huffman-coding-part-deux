@@ -33,7 +33,7 @@ public class HuffmanAPI {
         return dataString;
     }
 
-    public static void encodeSave(String s, String file) throws IOException {
+    public static void encodeSave(String s, String file) throws IOException, ClassNotFoundException {
         HashMap<Character, Integer> freq = huff.frequencies(s);
         Huffman.Node root = huff.huffmanTree(freq);
 
@@ -44,6 +44,10 @@ public class HuffmanAPI {
         huff.serializeTree(root, file);
 
         huff.serializeString(encodedString, file);
+
+        Huffman.Node decodeRoot = huff.deserializeTree(file);
+
+        huff.decoder(decodeRoot, file);
 
     }
 }

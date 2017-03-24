@@ -49,7 +49,7 @@ public class Client {
     }
 
     @Command(description = "Encode a String of text to a File")
-    public void encodeString() throws IOException {
+    public void encodeString() throws IOException, ClassNotFoundException {
         System.out.println("Please enter where to save the file: ");
         String save = scanner.nextLine();
 

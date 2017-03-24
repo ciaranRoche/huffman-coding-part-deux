@@ -55,6 +55,7 @@ public class Huffman {
     }
 
     public static HashMap<Character, Integer> frequencies(String s){
+        System.out.println("The starting size of file is: " +(s.length()*8)+ " bits");
         HashMap<Character, Integer> freq = new HashMap<>();
         for(int i=0; i<s.length(); i++){
             char ch = s.charAt(i);
@@ -159,9 +160,9 @@ public class Huffman {
 
 
 
-    public static Node deserializeTree() throws IOException, ClassNotFoundException {
-        try(ObjectInputStream streamBranch = new ObjectInputStream(new FileInputStream("././data/tree"))){
-            try(ObjectInputStream streamChar = new ObjectInputStream(new FileInputStream("././data/char"))){
+    public static Node deserializeTree(String location) throws IOException, ClassNotFoundException {
+        try(ObjectInputStream streamBranch = new ObjectInputStream(new FileInputStream(location + "-tree"))){
+            try(ObjectInputStream streamChar = new ObjectInputStream(new FileInputStream(location + "-char"))){
                 BitSet bitSet = (BitSet) streamBranch.readObject();
                 return preOrder(bitSet, streamChar, new IntObject());
             }
@@ -184,8 +185,8 @@ public class Huffman {
         return node;
     }
 
-    public static String decoder(Node n) throws IOException, ClassNotFoundException {
-        try(ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("././data/encodedMessage"))){
+    public static String decoder(Node n, String location) throws IOException, ClassNotFoundException {
+        try(ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(location + "-encoded"))){
             BitSet bitSet = (BitSet) inputStream.readObject();
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i<(bitSet.length()-1);){
